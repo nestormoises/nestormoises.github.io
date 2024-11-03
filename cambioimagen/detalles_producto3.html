@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles - Tienda Online</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Color de fondo */
+        }
+        .product-image {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .image-rotation {
+            width: 100%; /* Hace que la imagen ocupe el 100% del ancho de su contenedor */
+            max-width: 400px; /* Establece un ancho máximo */
+            height: auto; /* Mantiene la proporción de la imagen */
+            object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+        }
+        .image-rotation img {
+            max-width: 100%;
+            max-height: 400px;
+            transition: transform 0.5s ease;
+        }
+        .gallery-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .btn-view {
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-dark text-white text-center p-3">
+        <h1>Tienda Online</h1>
+    </header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Inicio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="productos.html">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.html">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="container mt-4">
+        <h2>Detalles</h2>
+        <div class="image-rotation">
+            <img id="mainImage" src="actekprincipal.jpg" alt="Imagen del Producto 1" class="product-image">
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Detalles del Producto</h2>
+                <p><strong>Precio:</strong> $1,500.00</p>
+                <p><strong>Descripción:</strong> Voltaje: 127/220V
+                    Tamaño de la pantalla: 23.8 "
+                    Pantalla Full HD de 23.8 pulgadas con tecnología LED para una visualización clara y nítida.
+                    Conexiones versátiles con VGA, HDMI y DC para una amplia compatibilidad con dispositivos.</p>
+                <p><strong>Colores Disponibles:</strong> Negro</p>
+            </div>
+            <div class="col-md-6">
+                <h2>Galería de Imágenes</h2>
+                <div class="image-rotation">
+                    <img id="thumbnailImage" src="actekprincipal.jpg" alt="Imagen del Producto 1" class="product-image">
+                </div>
+                <div class="gallery-buttons">
+                    <button class="btn btn-secondary btn-view" onclick="changeImage('actecklateral.jpg')">Vista 1</button>
+                    <button class="btn btn-secondary btn-view" onclick="changeImage('acteckcostado.jpg')">Vista 2</button>
+                    <button class="btn btn-secondary btn-view" onclick="changeImage('acteckatras.jpg')">Vista 3</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-dark text-white text-center p-3 mt-4">
+        <p>DERECHOS RESERVADOS Tu Tienda Online</p>
+    </footer>
+    <script>
+        function changeImage(image) {
+            document.getElementById('mainImage').src = image;
+            document.getElementById('thumbnailImage').src = image; // Cambiar la imagen de la galería también
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
