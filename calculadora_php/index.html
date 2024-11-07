@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora Estética</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #282c34;
+            color: #fff;
+        }
+        .calculator {
+            display: grid;
+            grid-template-columns: repeat(4, 60px);
+            gap: 10px;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .calculator input[type="button"], .calculator input[type="submit"] {
+            font-size: 24px;
+            padding: 10px;
+            width: 60px;
+            height: 60px;
+            background-color: #444;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .calculator input[type="button"]:hover {
+            background-color: #555;
+        }
+        .calculator input[type="text"] {
+            grid-column: span 4;
+            height: 60px;
+            font-size: 24px;
+            text-align: right;
+            padding-right: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #222;
+            color: #fff;
+        }
+        .result {
+            grid-column: span 4;
+            padding: 10px;
+            text-align: center;
+            font-size: 28px;
+            background-color: #444;
+            border-radius: 5px;
+            margin-top: 10px;
+            color: #0f0;
+        }
+    </style>
+</head>
+<body>
+    <form action="calcular.php" method="post" class="calculator">
+        <input type="text" name="display" id="display" readonly>
+        <input type="button" value="7" onclick="addToDisplay('7')">
+        <input type="button" value="8" onclick="addToDisplay('8')">
+        <input type="button" value="9" onclick="addToDisplay('9')">
+        <input type="button" value="/" onclick="setOperation('division')">
+        <input type="button" value="4" onclick="addToDisplay('4')">
+        <input type="button" value="5" onclick="addToDisplay('5')">
+        <input type="button" value="6" onclick="setOperation('multiplicacion')">
+        <input type="button" value="*" onclick="setOperation('multiplicacion')">
+        <input type="button" value="1" onclick="addToDisplay('1')">
+        <input type="button" value="2" onclick="addToDisplay('2')">
+        <input type="button" value="3" onclick="addToDisplay('3')">
+        <input type="button" value="-" onclick="setOperation('resta')">
+        <input type="button" value="0" onclick="addToDisplay('0')">
+        <input type="button" value="." onclick="addToDisplay('.')">
+        <input type="button" value="=" onclick="calculate()">
+        <input type="button" value="+" onclick="setOperation('suma')">
+        
+        <!-- Campos ocultos para enviar los valores y la operación a PHP -->
+        <input type="hidden" name="valor1" id="valor1">
+        <input type="hidden" name="valor2" id="valor2">
+        <input type="hidden" name="radio1" id="operation">
+    </form>
+
+    <script>
+        let isSecondValue = false;
+
+        function addToDisplay(value) {
+            const display = document.getElementById('display');
+            if (isSecondValue) {
+                display.value = '';
+                isSecondValue = false;
+            }
+            display.value += value;
+        }
+
+        function setOperation(operation) {
+            document.getElementById('valor1').value = document.getElementById('display').value;
+            document.getElementById('operation').value = operation;
+            isSecondValue = true;
+        }
+
+        function calculate() {
+            document.getElementById('valor2').value = document.getElementById('display').value;
+            document.forms[0].submit();
+        }
+    </script>
+</body>
+</html>
